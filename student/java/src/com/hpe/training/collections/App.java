@@ -31,16 +31,23 @@ public class App
       List<Defect> fixedList = defects.stream().sorted().toList();
 
       System.out.println("Defects < 50");
-      fixedList.stream().filter(d -> d.getSeverity() < 50)
+      fixedList
+              .stream()
+              .filter(d -> d.getSeverity() < 50)
               .forEach(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()));
 
       System.out.println("Defects => 50");
-      fixedList.stream().filter(d -> d.getSeverity() >= 50)
+      fixedList
+              .stream()
+              .filter(d -> d.getSeverity() >= 50)
               .forEach(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()));
 
       System.out.println("Defect with lowest severity or none");
-      fixedList.stream().min(Defect::compareTo).ifPresentOrElse(d -> System.out.printf("Defect %d: %s%n",
-              d.getSeverity(), d.getDescription()), () -> System.out.println("-1, NO DEFECTS"));
+      fixedList
+              .stream()
+              .min(Defect::compareTo)
+              .ifPresentOrElse(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()),
+                      () -> System.out.println("-1, NO DEFECTS"));
 
    }
 
