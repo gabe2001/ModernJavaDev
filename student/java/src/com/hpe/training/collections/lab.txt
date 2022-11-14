@@ -1,0 +1,16 @@
+Define a class called Defect (implement IComparable<Defect>)
+
+- has a severity (0 - 100)
+- also has a description
+
+Create a mutable list of Defects and insert some sample data.
+
+Using streams, sort the elements in order of increasing severity,
+and then collect into an immutable list.
+
+(Using streams) On the immutable list, get the Defects that have a severity < 50 and display each one.
+
+(Using streams) On the immutable list, get the Defects that have a severity >= 50 and display each one.
+
+(Using streams) Find the Defect with the lowest severity (hint, what if the list of defects is empty?).
+Display details about this defect, or display "-1, NO DEFECTS" if none.
