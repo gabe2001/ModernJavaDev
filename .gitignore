@@ -32,7 +32,6 @@ cmake-build-debug/
 
 ## File-based project format:
 *.iws
-*.iml
 
 ## Plugin-specific files:
 
@@ -118,22 +117,5 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,maven,intellij+iml
-.factorypath
-sbs-eaas-service-stub/src/main/java/com/hp/it/sbs/eaas/service/stub/EaaSStub.java
-sbs-eaas-service-stub/src/main/resources/EaaS_StubData.xls
-sbs-eaas-transport-client-rest/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSCommonTransportClientREST.java
-sbs-eaas-transport-client-rest/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSTransportClientREST.java
-sbs-eaas-transport-client/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSCommonFactory.java
-sbs-eaas-transport-client/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSFactory.java
-sbs-eaas-transport-client/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSService.java
-sbs-eaas-transport-client/src/main/java/com/hp/it/sbs/eaas/transport/client/EaaSServiceClient.java
-sbs-eaas-transport-server/src/main/java/com/hp/it/sbs/eaas/transport/server/EaaSApplication.java
-sbs-eaas-transport-server/src/main/java/com/hp/it/sbs/eaas/transport/server/EaaSServiceServer.java
-sbs-eaas-transport-server/src/main/java/com/hp/it/sbs/eaas/transport/server/EaaSTransportServerREST.java
-
 # Visual Studio Code
 .vscode/
-
-# include the Zookeeper client JAR in the repo. It will be used with Github and Jenkins
-!/config/properties-loader-1.0.4-jar-with-dependencies.jar
-!/resources/docker-local/EaaSWebClient.war
