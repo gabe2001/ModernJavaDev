@@ -1,6 +1,8 @@
 // (c) Copyright 2022 Hewlett Packard Enterprise Development LP
 package com.hpe.training.collections;
 
+import java.util.Optional;
+
 /**
  * {@code com.hpe.training}
  *
@@ -9,7 +11,7 @@ package com.hpe.training.collections;
 public class Defect implements Comparable<Defect>
 {
 
-   private final int severity;
+   private final int    severity;
    private final String description;
 
    public Defect(final int severity, final String description)
@@ -18,8 +20,17 @@ public class Defect implements Comparable<Defect>
       this.description = description;
    }
 
+   /**
+    *
+    * @return no defect object
+    */
+   public static Optional<Defect> noDefect()
+   {
+      return Optional.of(new Defect(-1, "No Defect"));
+   }
+
    @Override
-   public int compareTo(Defect o)
+   public int compareTo(final Defect o)
    {
       return severity - o.severity;
    }
@@ -29,9 +40,10 @@ public class Defect implements Comparable<Defect>
       return severity;
    }
 
-   public String getDescription()
+   @Override
+   public String toString()
    {
-      return description;
+      return String.format("Defect %d: %s", severity, description);
    }
 
 }

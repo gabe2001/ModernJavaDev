@@ -28,26 +28,33 @@ public class App
       // comment next statement to test .ifPresentOrElse and dealing with empty collections
       numbers.forEach(n -> defects.add(new Defect(n, String.format("I'm defect #%d", n))));
 
-      List<Defect> fixedList = defects.stream().sorted().toList();
+      List<Defect> fixedSortedList = defects.stream().sorted().toList();
+      // toList() calls collect(Collectors.toUnmodifiableList());
 
       System.out.println("Defects < 50");
-      fixedList
+      fixedSortedList
               .stream()
               .filter(d -> d.getSeverity() < 50)
-              .forEach(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()));
+              .forEach(System.out::println);
 
       System.out.println("Defects => 50");
-      fixedList
+      fixedSortedList
               .stream()
               .filter(d -> d.getSeverity() >= 50)
-              .forEach(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()));
+              .forEach(System.out::println);
 
       System.out.println("Defect with lowest severity or none");
-      fixedList
+      fixedSortedList
               .stream()
               .min(Defect::compareTo)
-              .ifPresentOrElse(d -> System.out.printf("Defect %d: %s%n", d.getSeverity(), d.getDescription()),
-                      () -> System.out.println("-1, NO DEFECTS"));
+              .ifPresentOrElse(System.out::println, () -> System.out.println("-1, NO DEFECTS"));
+
+      System.out.println("Defect with lowest severity Andy's solution");
+      fixedSortedList
+              .stream()
+              .min(Defect::compareTo)
+              .or(Defect::noDefect)
+              .ifPresent(System.out::println);
 
    }
 
