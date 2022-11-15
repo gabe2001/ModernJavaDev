@@ -14,15 +14,19 @@ public record Date(int year, int month, int day)
       if (!isValid(year, month, day))
       {
          throw new IllegalArgumentException(
-                 String.format("%d-%02d-%02d (YYYY-MM-DD) is not a valid year", year, month, day));
+                 String.format("%04d-%02d-%02d (YYYY-MM-DD) is not a valid year", year, month, day));
       }
    }
 
-   public static boolean isValid(final Date date)
-   {
-      return isValid(date.year, date.month, date.day);
-   }
-
+   /**
+    * Used for validating data before creating Date record.
+    * It's also a utility class for general use.
+    *
+    * @param year  int
+    * @param month int
+    * @param day   int
+    * @return boolean is/isn't valid date
+    */
    public static boolean isValid(final int year, final int month, final int day)
    {
       boolean isValid;
@@ -53,7 +57,26 @@ public record Date(int year, int month, int day)
       return isValid;
    }
 
-   public static String daySuffix(final int day)
+   /**
+    * @param year int
+    * @return boolean is/isn´t a leap year
+    */
+   public static boolean isLeapYear(final int year)
+   {
+      return ((year % 4 == 0) && !(year % 100 == 0)) || (year % 400 == 0);
+   }
+
+   /**
+    * Redundant method as we're validating the data before creating the Date record
+    *
+    * @return boolean is/isn't a valid date
+    */
+   public boolean isValid()
+   {
+      return isValid(year, month, day);
+   }
+
+   public String daySuffix()
    {
       return switch (day)
               {
@@ -64,7 +87,7 @@ public record Date(int year, int month, int day)
               };
    }
 
-   public static String monthName(final int month)
+   public String monthName()
    {
       return switch (month)
               {
@@ -85,9 +108,9 @@ public record Date(int year, int month, int day)
               };
    }
 
-   public static boolean isLeapYear(final int year)
+   public boolean isLeapYear()
    {
-      return ((year % 4 == 0) && !(year % 100 == 0)) || (year % 400 == 0);
+      return isLeapYear(year);
    }
 
 }
