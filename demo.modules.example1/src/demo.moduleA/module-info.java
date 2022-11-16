@@ -1,3 +1,3 @@
-module demo.moduleA {
+ module demo.moduleA {
     exports packageA;
 }
