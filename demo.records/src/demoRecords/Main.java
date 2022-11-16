@@ -30,7 +30,7 @@ public class Main {
 
         var p1 = new PersonR(1234, "Andy", "Welsh", 57);
         System.out.printf("%s, nationality: %s, age : %d\n", p1.name(), p1.nationality(), p1.age());
-        System.out.printf("p1.toString(): %s\n", p1.toString());
+        System.out.printf("p1.toString(): %s\n", p1);
         System.out.printf("p1.hashCode(): %d\n", p1.hashCode());
 
         var p2 = new PersonR(1234, "Andy", "Welsh", 57);
@@ -43,7 +43,7 @@ public class Main {
 
         var p1 = new PersonC(1234, "Andy", "Welsh", 57);
         System.out.printf("%s, nationality: %s, age : %d\n", p1.name(), p1.nationality(), p1.age());
-        System.out.printf("p1.toString(): %s\n", p1.toString());
+        System.out.printf("p1.toString(): %s\n", p1);
         System.out.printf("p1.hashCode(): %d\n", p1.hashCode());
 
         var p2 = new PersonC(1234, "Andy", "Welsh", 57);
@@ -81,7 +81,7 @@ public class Main {
         var p1 = new PersonR_OverridingMethods(1234, "Andrew", "Welsh", 56);
         var p2 = new PersonR_OverridingMethods(1234, "Andy", "Welsh", 57);
 
-        System.out.println(p1.toString());
+        System.out.println(p1);
         System.out.println(p2);
         System.out.printf("p1.equals(p2)? %s\n", p1.equals(p2));
         System.out.printf("p1.hashCode(): %d\n", p1.hashCode());

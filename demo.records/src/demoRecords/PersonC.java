@@ -43,12 +43,12 @@ final class PersonC {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof PersonC otherP)) {
+        if (!(other instanceof PersonC that)) {
             return false;
         }
-        return this.id == otherP.id &&
-               this.name.equals(otherP.name) &&
-               this.nationality.equals(otherP.nationality) &&
-               this.age == otherP.age;
+        return this.id == that.id &&
+               this.name.equals(that.name) &&
+               this.nationality.equals(that.nationality) &&
+               this.age == that.age;
     }
 }

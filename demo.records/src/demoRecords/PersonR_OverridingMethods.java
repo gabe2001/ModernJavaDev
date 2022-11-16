@@ -9,10 +9,10 @@ public record PersonR_OverridingMethods(long id, String name, String nationality
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof PersonR_OverridingMethods otherP)) {
+        if (!(other instanceof PersonR_OverridingMethods that)) {
             return false;
         }
-        return this.id == otherP.id;
+        return this.id == that.id;
     }
 
     @Override
