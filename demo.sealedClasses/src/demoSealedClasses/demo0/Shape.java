@@ -3,7 +3,7 @@ package demoSealedClasses.demo0;
 // Imagine we want to limit the permitted classes that can inherit from Shape...
 // In "traditional" Java, we could use a trick to do this...
 
-public class Shape {
+abstract public class Shape {
 
     // Define a package-visibility constructor, as a "traditional" way to limit who can subclass.
     // Specifically, this will only permit subclasses to be defined in this package.
