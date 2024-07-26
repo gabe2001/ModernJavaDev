@@ -1,74 +1,82 @@
 package demoReactiveStreams;
 
-import java.util.List;
 import java.util.concurrent.SubmissionPublisher;
+import java.util.stream.Stream;
 
-public class Main {
+public class Main
+{
 
-    public static void main(String[] args) {
-        demo1();
-        demo2();
-    }
+   public static void main(String[] args)
+   {
+      demo1();
+      demo2();
+   }
 
-    private static void demo1() {
+   private static void demo1()
+   {
 
-        System.out.println("\nIn demo1()");
+      System.out.println("\nIn demo1()");
 
-        // Create a publisher - let's use the SubmissionPublisher implementation class.
-        SubmissionPublisher<String> publisher = new SubmissionPublisher<>();  
+      // Create a publisher - let's use the SubmissionPublisher implementation class.
+      SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
 
-        // Register a subscriber. 
-        MySubscriber<String> subscriber = new MySubscriber<>();  
-        publisher.subscribe(subscriber);  
+      // Register a subscriber.
+      MySubscriber<String> subscriber = new MySubscriber<>();
+      publisher.subscribe(subscriber);
 
-        // Publish some items.  
-        System.out.println("Publishing items...");
-        List.of("matthew", "mark", "luke", "john")
-            .stream()
-            .forEach(item -> publisher.submit(item));
+      // Publish some items.
+      System.out.println("Publishing items...");
+      Stream.of("matthew", "mark", "luke", "john").forEach(publisher::submit);
 
-        // Tell subscriber's we're done.
-        publisher.close();
- 
-        // Consultancy loop :-)
-        try {
-            Thread.sleep(2000); 
-        }
-        catch (InterruptedException ex) {}
+      // Tell subscriber's we're done.
+      publisher.close();
 
-        System.out.printf("Subscriber consumed %d items\n", subscriber.consumedItems.size());
-    }
+      // Consultancy loop :-)
+      try
+      {
+         Thread.sleep(2000);
+      }
+      catch (InterruptedException ex)
+      {
+         // do nothing
+      }
 
-    private static void demo2() {
+      System.out.printf("Subscriber consumed %d items\n", subscriber.consumedItems.size());
+   }
 
-        System.out.println("\nIn demo2()");
+   private static void demo2()
+   {
 
-        // Create a publisher - let's use the SubmissionPublisher implementation class.
-        SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
+      System.out.println("\nIn demo2()");
 
-        // Create and register a TransformProcessor.
-        MyTransformProcessor<String, Integer> transformProcessor = new MyTransformProcessor<>(s -> s.length());
-        publisher.subscribe(transformProcessor);
+      // Create a publisher - let's use the SubmissionPublisher implementation class.
+      SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
 
-        // Register a subscriber.
-        MySubscriber<Integer> subscriber = new MySubscriber<>();
-        transformProcessor.subscribe(subscriber);
+      // Create and register a TransformProcessor.
+      MyTransformProcessor<String, Integer> transformProcessor = new MyTransformProcessor<>(s -> s.length());
+      publisher.subscribe(transformProcessor);
 
-        // Publish some items.
-        System.out.println("Publishing items...");
-        List.of("ole", "dole", "doffen")
-                .stream()
-                .forEach(item -> publisher.submit(item));
+      // Register a subscriber.
+      MySubscriber<Integer> subscriber = new MySubscriber<>();
+      transformProcessor.subscribe(subscriber);
 
-        // Tell subscriber's we're done.
-        publisher.close();
+      // Publish some items.
+      System.out.println("Publishing items...");
+      Stream.of("ole", "dole", "doffen").forEach(publisher::submit);
 
-        // Consultancy loop :-)
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {}
+      // Tell subscriber's we're done.
+      publisher.close();
 
-        System.out.printf("Subscriber consumed %d items\n", subscriber.consumedItems.size());
-    }
+      // Consultancy loop :-)
+      try
+      {
+         Thread.sleep(2000);
+      }
+      catch (InterruptedException ex)
+      {
+         // do nothing
+      }
+
+      System.out.printf("Subscriber consumed %d items\n", subscriber.consumedItems.size());
+   }
 }
